@@ -1,0 +1,3 @@
+1. download zipfile into the prefered directory 
+2. do unzip battleship.zip 
+3. make game

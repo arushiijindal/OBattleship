@@ -1,0 +1,95 @@
+(lang dune 3.10)
+(name Game)
+(sections (lib .) (libexec .) (doc ../../doc/Game))
+(files
+ (lib
+  (META
+   battleship.ml
+   battleship.mli
+   board.ml
+   board.mli
+   computer.ml
+   computer.mli
+   dune-package
+   game.a
+   game.cma
+   game.cmi
+   game.cmt
+   game.cmx
+   game.cmxa
+   game.ml
+   game__Battleship.cmi
+   game__Battleship.cmt
+   game__Battleship.cmti
+   game__Battleship.cmx
+   game__Board.cmi
+   game__Board.cmt
+   game__Board.cmti
+   game__Board.cmx
+   game__Computer.cmi
+   game__Computer.cmt
+   game__Computer.cmti
+   game__Computer.cmx
+   game__Gameplay.cmi
+   game__Gameplay.cmt
+   game__Gameplay.cmti
+   game__Gameplay.cmx
+   game__Player.cmi
+   game__Player.cmt
+   game__Player.cmti
+   game__Player.cmx
+   gameplay.ml
+   gameplay.mli
+   opam
+   player.ml
+   player.mli))
+ (libexec (game.cmxs))
+ (doc (README.md)))
+(library
+ (name Game)
+ (kind normal)
+ (archives (byte game.cma) (native game.cmxa))
+ (plugins (byte game.cma) (native game.cmxs))
+ (native_archives game.a)
+ (main_module_name Game)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name game)
+     (visibility public)
+     (kind alias)
+     (source (path Game) (impl (path game.ml-gen))))
+    (name Game)
+    (modules
+     (module
+      (obj_name game__Battleship)
+      (visibility public)
+      (source
+       (path Battleship)
+       (intf (path battleship.mli))
+       (impl (path battleship.ml))))
+     (module
+      (obj_name game__Board)
+      (visibility public)
+      (source (path Board) (intf (path board.mli)) (impl (path board.ml))))
+     (module
+      (obj_name game__Computer)
+      (visibility public)
+      (source
+       (path Computer)
+       (intf (path computer.mli))
+       (impl (path computer.ml))))
+     (module
+      (obj_name game__Gameplay)
+      (visibility public)
+      (source
+       (path Gameplay)
+       (intf (path gameplay.mli))
+       (impl (path gameplay.ml))))
+     (module
+      (obj_name game__Player)
+      (visibility public)
+      (source (path Player) (intf (path player.mli)) (impl (path player.ml))))))
+   (wrapped true))))
